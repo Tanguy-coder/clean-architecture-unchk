@@ -2,6 +2,7 @@ package com.unchk.Clean_architecture;
 
 import com.unchk.Clean_architecture.Domain.Port.CategoryServiceInterface;
 import com.unchk.Clean_architecture.Domain.Port.ProductServiceInterface;
+import com.unchk.Clean_architecture.Domain.Port.UserServiceInterface;
 import com.unchk.Clean_architecture.Domain.UseCase.Category.CreateCategoryUseCase;
 import com.unchk.Clean_architecture.Domain.UseCase.Category.GetCategoryByIdUseCase;
 import com.unchk.Clean_architecture.Domain.UseCase.Category.ListCategoriesUseCase;
@@ -10,8 +11,13 @@ import com.unchk.Clean_architecture.Domain.UseCase.Product.CreateProductUseCase;
 import com.unchk.Clean_architecture.Domain.UseCase.Product.GetProductByIdUseCase;
 import com.unchk.Clean_architecture.Domain.UseCase.Product.ListProductUseCase;
 import com.unchk.Clean_architecture.Domain.UseCase.Product.UpdateProductUseCase;
+import com.unchk.Clean_architecture.Domain.UseCase.User.CreateUserUseCase;
+import com.unchk.Clean_architecture.Domain.UseCase.User.GetUserByIdUseCase;
+import com.unchk.Clean_architecture.Domain.UseCase.User.ListUserUseCase;
+import com.unchk.Clean_architecture.Domain.UseCase.User.UpdateUserUseCase;
 import com.unchk.Clean_architecture.Infrastructure.Presenter.CategoryPresenter;
 import com.unchk.Clean_architecture.Infrastructure.Presenter.ProductPresenter;
+import com.unchk.Clean_architecture.Infrastructure.Presenter.UserPresenter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +37,11 @@ public class CleanArchitectureApplication {
 	@Bean
 	public ProductPresenter productPresenter(){
 		return new ProductPresenter();
+	}
+
+	@Bean
+	public UserPresenter userPresenter(){
+		return new UserPresenter();
 	}
 
 	/*******************************UseCases*********************************************************/
@@ -71,5 +82,23 @@ public class CleanArchitectureApplication {
 		return new UpdateProductUseCase(productServiceInterface);
 	}
 	
+	@Bean
+	public ListUserUseCase listUserUseCase(UserServiceInterface userServiceInterface){
+		return new ListUserUseCase(userServiceInterface);
+	}
 
+	@Bean
+	public CreateUserUseCase createUserUseCase(UserServiceInterface userServiceInterface){
+		return new CreateUserUseCase(userServiceInterface);
+	}
+
+	@Bean
+	public GetUserByIdUseCase getUserByIdUseCase(UserServiceInterface userServiceInterface){
+		return new GetUserByIdUseCase(userServiceInterface);
+	}
+
+	@Bean
+	public UpdateUserUseCase updateUserUseCase(UserServiceInterface userServiceInterface){
+		return new UpdateUserUseCase(userServiceInterface);
+	}
 }
